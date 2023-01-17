@@ -9,7 +9,9 @@
     "@module-federation/nextjs-mf": "^6.0.4",
     "next": "latest",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "livi-poc-core": "0.1.3",
+    "livi-poc-form": "0.1.1"
   },
   "devDependencies": {
     "@types/node": "18.11.3",
