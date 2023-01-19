@@ -1,10 +1,28 @@
 import { Button, Card, CardBody, CardFooter, Group, Stack, Title } from "livi-poc-core"
 import { Form, FormGroup, Input, Label } from "livi-poc-form"
+import dynamic from "next/dynamic"
+import { FormEvent } from "react"
+import { UseBoundStore, StoreApi } from "zustand"
 
+
+interface IShareState<T> {
+    current: T
+    update: (value: T) => void
+}
+
+// @ts-ignore
+const useAuthState: UseBoundStore<StoreApi<IShareState<string>>> = dynamic(() => import('csm/useAuth'))
 
 const Login = () => {
+    const { update } = useAuthState()
+
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        // update(e.target.)
+        alert(e.currentTarget.username.value)
+    }
     return (
-        <Form>
+        <Form method="post" onSubmit={handleSubmit}>
             <Card>
                 <CardBody>
                     <Stack spacing='md'>
@@ -21,9 +39,8 @@ const Login = () => {
                 </CardBody>
                 <CardFooter className="flex justify-end">
                     <div className="grid grid-cols-2 gap-3 w-1/2">
-
-                        <Button set='secondary' color="primary" className="w-full">Forget Password</Button>
-                        <Button set='primary' color="secondary" className="w-full">Login</Button>
+                        <Button type='button' set='secondary' color="primary" className="w-full">Forget Password</Button>
+                        <Button type='submit' set='primary' color="secondary" className="w-full">Login</Button>
                     </div>
                 </CardFooter>
             </Card>

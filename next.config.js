@@ -10,7 +10,7 @@ const nextConfig = {
       new NextFederationPlugin({
         name: 'login',
         remotes: {
-          //next1: `next1@http://localhost:3001/_next/static/${isServer ? 'ssr' : 'chunks'}/remoteEntry.js`,
+          csm: `csm@https://livi-poc-csm.vercel.app/_next/static/${isServer ? 'ssr' : 'chunks'}/remoteEntry.js`,
         },
         filename: 'static/chunks/remoteEntry.js',
         exposes: {
