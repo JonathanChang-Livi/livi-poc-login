@@ -1,9 +1,10 @@
 // "use client"
 
-import { hasCookie, setCookie } from "cookies-next"
+import { getCookie, hasCookie, setCookie } from "cookies-next"
 import { Button, Card, CardBody, CardFooter, Stack, Title } from "livi-poc-core"
 import { Form, FormGroup, Input, Label } from "livi-poc-form"
 import { GetServerSideProps } from "next"
+import { redirect } from "next/dist/server/api-utils"
 import { FormEvent } from "react"
 
 const Login = () => {
@@ -12,10 +13,11 @@ const Login = () => {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setCookie('auth-token', e.currentTarget.username.value)
-        // alert(e.currentTarget.username.value)
+        console.log(getCookie('auth-token'), 'auth-token ----------------------')
+        window.location.replace('/')
     }
 
-    console.log('>> Client Component Test')
+    // console.log('>> Client Component Test')
     return (
         <Form method="post" onSubmit={handleSubmit}>
             <Card>
