@@ -14,7 +14,7 @@ const Login = () => {
         e.preventDefault()
         setCookie('auth-token', e.currentTarget.username.value)
         console.log(getCookie('auth-token'), 'auth-token ----------------------')
-        window.location.replace(`${window.location.origin}`)
+        // window.location.replace(`${window.location.origin}`)
     }
 
     // console.log('>> Client Component Test')
