@@ -7,12 +7,19 @@ import { GetServerSideProps } from "next"
 import { redirect } from "next/dist/server/api-utils"
 import { FormEvent } from "react"
 
-const Login = ({ handleSubmit }: any) => {
+const Login = () => {
     // const { current } = authState
+
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        setCookie('auth-token', e.currentTarget.username.value)
+        console.log(getCookie('auth-token'), 'auth-token ----------------------')
+        alert(`${window.location.origin}`)
+    }
 
     // console.log('>> Client Component Test')
     return (
-        <Form method="post" onSubmit={(e) => handleSubmit(e)}>
+        <Form method="post" onSubmit={handleSubmit}>
             <Card>
                 <CardBody>
                     <Stack spacing='md'>
@@ -50,12 +57,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     }
     return {
         props: {
-            handleSubmit: (e: FormEvent<HTMLFormElement>) => {
-                e.preventDefault()
-                setCookie('auth-token', e.currentTarget.username.value)
-                console.log(getCookie('auth-token'), 'auth-token ----------------------')
-                window.location.assign(`${window.location.origin}`)
-            }
+
         }
     }
 }
