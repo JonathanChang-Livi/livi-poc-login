@@ -12,7 +12,7 @@ const Login = ({ handleSubmit }: any) => {
 
     // console.log('>> Client Component Test')
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form method="post" onSubmit={(e) => handleSubmit(e)}>
             <Card>
                 <CardBody>
                     <Stack spacing='md'>
@@ -54,7 +54,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
                 e.preventDefault()
                 setCookie('auth-token', e.currentTarget.username.value)
                 console.log(getCookie('auth-token'), 'auth-token ----------------------')
-                window.location.replace('/')
+                window.location.assign(`${window.location.origin}`)
             }
         }
     }
