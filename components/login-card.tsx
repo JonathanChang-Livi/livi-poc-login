@@ -7,15 +7,18 @@ import { GetServerSideProps } from "next"
 import { redirect } from "next/dist/server/api-utils"
 import { FormEvent } from "react"
 
-const Login = () => {
+interface LoginProps {
+    handleSubmit: (e: FormEvent<HTMLFormElement>) => void
+}
+const Login = ({handleSubmit}: LoginProps) => {
     // const { current } = authState
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        setCookie('auth-token', e.currentTarget.username.value)
-        console.log(getCookie('auth-token'), 'auth-token ----------------------')
-        // window.location.replace(`${window.location.origin}`)
-    }
+    // const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    //     e.preventDefault()
+    //     setCookie('auth-token', e.currentTarget.username.value)
+    //     console.log(getCookie('auth-token'), 'auth-token ----------------------')
+    //     // window.location.replace(`${window.location.origin}`)
+    // }
 
     // console.log('>> Client Component Test')
     return (
