@@ -1,26 +1,21 @@
-import { Button, Card, CardBody, CardFooter, Group, Stack, Title } from "livi-poc-core"
+// "use client"
+
+import { hasCookie, setCookie } from "cookies-next"
+import { Button, Card, CardBody, CardFooter, Stack, Title } from "livi-poc-core"
 import { Form, FormGroup, Input, Label } from "livi-poc-form"
-import dynamic from "next/dynamic"
+import { GetServerSideProps } from "next"
 import { FormEvent } from "react"
-import { UseBoundStore, StoreApi } from "zustand"
-
-
-interface IShareState<T> {
-    current: T
-    update: (value: T) => void
-}
-
-// @ts-ignore
-const useAuthState: UseBoundStore<StoreApi<IShareState<string>>> = dynamic(() => import('csm/useAuth'))
 
 const Login = () => {
-    const { update } = useAuthState()
+    // const { current } = authState
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        // update(e.target.)
-        alert(e.currentTarget.username.value)
+        setCookie('auth-token', e.currentTarget.username.value)
+        // alert(e.currentTarget.username.value)
     }
+
+    console.log('>> Client Component Test')
     return (
         <Form method="post" onSubmit={handleSubmit}>
             <Card>
@@ -46,6 +41,23 @@ const Login = () => {
             </Card>
         </Form>
     )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+    // const { current, update } = useAuthState()
+    if(hasCookie('auth-token')){
+        return {
+            redirect: {
+                permanent: false,
+                destination: ''
+            }
+        }
+    }
+    return {
+        props: {
+            
+        }
+    }
 }
 
 export default Login

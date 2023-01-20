@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@module-federation/nextjs-mf": "^6.0.4",
+    "cookies-next": "^2.1.1",
     "livi-poc-core": "^0.1.5",
     "livi-poc-form": "^0.1.2",
     "next": "latest",
