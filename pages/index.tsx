@@ -12,7 +12,7 @@ const Home: NextPage = () => {
       grid grid-cols-2 grid-cols-4  rounded-lg p-3   text-base text-secondary bg-primary hover:scale-110
       text-primary bg-secondary
       ' />
-      <Login />
+      <Login handleSubmit={() => {}}/>
     </div>
   )
 }
